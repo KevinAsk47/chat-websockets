@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom'
+import './App.css'
+import Bienvenida from './Bienvenida'
+import Chat from './Chat'
+import io from 'socket.io-client'
 
-function App() {
+const App = () => {
+  const [nombre, setNombre] = useState('')
+  const [socket, setSocket] = useState(null)
+
+  useEffect(() => {
+    setSocket(io('http://localhost:4000'))
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" render={(props) => <Bienvenida nombre={nombre} setNombre={setNombre} {...props} />} />
+        {nombre !== '' && <Route path="/chat" render={() => <Chat nombre={nombre} socket={socket} />} />}
+        <Redirect to="/" />
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

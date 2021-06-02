@@ -1,0 +1,59 @@
+html * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div.container {
+    width: 100%;
+    height: 100vh;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.nombre {
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 5vh 5vw;
+    display: flex;
+    flex-direction: column;
+}
+
+div.nombre h1, input {
+    margin-bottom: 5vh;
+}
+
+div.nombre input, button {
+    padding: 2vh 3vw;
+    font-size: 25px;
+}
+
+div.chat {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+div.chat div:first-child {
+    flex: 1;
+}
+
+div.chat div {
+    padding: 2vh 5vw;
+    margin-bottom: 0vh;
+}
+
+div.chat div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div.chat div:nth-child(2) input {
+    flex: 1;
+}
+
