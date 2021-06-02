@@ -3,6 +3,7 @@ const cors = require('cors')
 require('dotenv').config()
 const router = require('./routes')
 const socket = require('socket.io')
+const path = require('path')
 
 const app = express()
 
@@ -14,7 +15,7 @@ app.use('/api', router)
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
     app.get('*', (req, res) => {
-        res.sendFile(pathjoin(__dirname+"/client/build/index.html"))
+        res.sendFile(path.join(__dirname+"/client/build/index.html"))
     })
 }
 const PORT = process.env.PORT
