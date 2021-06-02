@@ -8,7 +8,7 @@ const Chat = (props) => {
     const [escribiendo, setEscribiendo] = useState(null)
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/chat')
+        fetch('https://chatmindhub.herokuapp.com/api/chat')
         .then(res => res.json())
         .then(data => setMensajes(data.response) )
     }, [reload])
@@ -32,7 +32,7 @@ const Chat = (props) => {
             emisor: props.nombre,
             mensaje
         }
-        const respuesta = await axios.post('http://localhost:4000/api/chat', nuevoMensaje)
+        const respuesta = await axios.post('https://chatmindhub.herokuapp.com/api/chat', nuevoMensaje)
         props.socket.emit('teMandeNuevoMensaje', nuevoMensaje)
         setReload(!reload)
         setMensaje('')
